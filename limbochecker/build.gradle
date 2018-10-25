@@ -37,7 +37,7 @@ apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
 def siteUrl = 'https://github.com/tyranny777/LimboChecker'
-def gitUrl = 'git@github.com:tyranny777/LimboChecker.git'
+def gitUrl = 'https://github.com/tyranny777/LimboChecker.git'
 group = "com.tyranny.limbochecker"
 version = "1.0.0"
 install {
