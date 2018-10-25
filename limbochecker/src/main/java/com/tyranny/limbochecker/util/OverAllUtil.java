@@ -15,8 +15,8 @@ import java.util.Map;
  */
 public class OverAllUtil {
 
-    public static boolean checkAll(Context context, LinkedHashMap<Object, LinkedHashMap<BaseCondition, LimboMatchBody>> mapHashMap) {
-        for (Map.Entry<Object, LinkedHashMap<BaseCondition, LimboMatchBody>> mapEntry : mapHashMap.entrySet()) {
+    public static <T> boolean checkAll(Context context, LinkedHashMap<T, LinkedHashMap<BaseCondition, LimboMatchBody>> mapHashMap) {
+        for (Map.Entry<T, LinkedHashMap<BaseCondition, LimboMatchBody>> mapEntry : mapHashMap.entrySet()) {
             for (Map.Entry<BaseCondition, LimboMatchBody> entry : mapEntry.getValue().entrySet()) {
                 LimboChecker checker = LimboChecker.get(entry.getValue());
                 boolean checkResult = checker.addCondition(entry.getKey()).getCheckResult();
