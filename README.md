@@ -1,4 +1,7 @@
 # LimboChecker
+
+#### implementation 'com.github.tyranny777:LimboChecker:96683d5fae'
+
 ```NonNullCondition noNull = new NonNullCondition(false);
 ValidatePhoneCondition val = new ValidatePhoneCondition(11);
 NonNullCondition noNull = new NonNullCondition();
