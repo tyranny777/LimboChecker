@@ -92,8 +92,8 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
-        repo = "limbochecker"
-        name = "limbochecker"
+        repo = "limbo"
+        name = "limbo"
         userOrg = 'tyranny'
         websiteUrl = siteUrl
         vcsUrl = gitUrl
@@ -101,11 +101,3 @@ bintray {
         publish = true
     }
 }
-
-//publish{
-//    userOrg = 'tyranny'//bintray.com的用户名
-//    groupId = 'limbo'//jcenter上的路径
-//    artifactId = 'limborchecker'//项目名称
-//    publishVersion = '1.0.0'//版本号
-//    website = siteUrl//项目主页
-//}
