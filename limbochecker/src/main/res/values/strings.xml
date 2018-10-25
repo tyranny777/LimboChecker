@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">LimboChecker</string>
+    <string name="str_not_null">不能为空</string>
+</resources>
