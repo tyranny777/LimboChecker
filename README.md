@@ -1,8 +1,8 @@
 # LimboChecker
 ```NonNullCondition noNull = new NonNullCondition(false);
-ValidatePhoneCondition val = new ValidatePhoneCondition(11,false);
-NonNullCondition noNull = new NonNullCondition(false);
-LengthCondition len = new LengthCondition(11, IContentChecker.LengthType.PHONE, false);
+ValidatePhoneCondition val = new ValidatePhoneCondition(11);
+NonNullCondition noNull = new NonNullCondition();
+LengthCondition len = new LengthCondition(11, IContentChecker.LengthType.PHONE);
 
 ContentMatchBody name = new ContentMatchBody("name","test");
 
