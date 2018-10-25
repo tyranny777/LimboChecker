@@ -1,7 +1,7 @@
 package com.tyranny.limbochecker.checkimpl;
 
 import android.support.annotation.NonNull;
-import com.tyranny.limbochecker.definition.IContentChecker;
+import com.tyranny.limbochecker.definition.ILimboChecker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,20 +12,20 @@ import java.util.List;
  * @version 1.0.0
  */
 
-public class ContentChecker implements IContentChecker {
+public class LimboChecker implements ILimboChecker {
     private MatchBody body;
     private List<Condition> conditionList;
 
-    private ContentChecker(MatchBody body) {
+    private LimboChecker(MatchBody body) {
         this.body = body;
     }
 
-    public static ContentChecker get(MatchBody matchBody) {
-        return new ContentChecker(matchBody);
+    public static LimboChecker get(MatchBody matchBody) {
+        return new LimboChecker(matchBody);
     }
 
 
-    public ContentChecker addCondition(Condition condition) {
+    public LimboChecker addCondition(Condition condition) {
         if (conditionList == null) {
             conditionList = new ArrayList<>();
         }
@@ -34,7 +34,7 @@ public class ContentChecker implements IContentChecker {
         return this;
     }
 
-    public ContentChecker addConditionList(ArrayList<Condition> conditions) {
+    public LimboChecker addConditionList(ArrayList<Condition> conditions) {
         if (conditionList == null) {
             conditionList = new ArrayList<>();
         }
@@ -71,19 +71,19 @@ public class ContentChecker implements IContentChecker {
 
     public static class Machine {
 
-        private List<ContentChecker> checkerList;
+        private List<LimboChecker> checkerList;
 
         private Machine() {
             checkerList = new ArrayList<>();
         }
 
-        public Machine putChecker(ContentChecker checker) {
+        public Machine putChecker(LimboChecker checker) {
             checkerList.add(checker);
             return this;
         }
 
         public boolean checkAll() {
-            for (ContentChecker c : checkerList) {
+            for (LimboChecker c : checkerList) {
                 if (!c.getCheckResult()) {
                     return false;
                 }

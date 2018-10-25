@@ -36,6 +36,27 @@ dependencies {
 apply plugin: 'com.jfrog.bintray'
 apply plugin: 'com.github.dcendents.android-maven'
 
+
+
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+
 def siteUrl = 'https://github.com/tyranny777/LimboChecker'
 def gitUrl = 'https://github.com/tyranny777/LimboChecker.git'
 group = "com.tyranny.limbochecker"
@@ -69,35 +90,53 @@ install {
         }
     }
 }
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
+
+
+javadoc {
+    options {
+        encoding "UTF-8"
+        charSet 'UTF-8'
+        author true
+        version true
+    }
 }
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+
+task releaseJar(type: Copy) {
+    from('build/intermediates/bundles/default')
+    into('../jar')
+    include('classes.jar')
+    rename('classes.jar', 'limbo' + version + '.jar')
 }
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
-}
+
 Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 bintray {
     user = properties.getProperty("bintray.user")
     key = properties.getProperty("bintray.apikey")
+    publish = true
     configurations = ['archives']
     pkg {
         repo = "limbo"
-        name = "limbo"
+        name = "limbochecker"
         userOrg = 'tyranny'
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["Apache-2.0"]
         publish = true
+        publicDownloadNumbers = true
+
+        version {
+            name = '1.0.0'
+            desc = 'limbochecker release'
+            vcsTag = '1.0.0'
+        }
     }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+task findConventions << {
+    println project.getConvention()
 }

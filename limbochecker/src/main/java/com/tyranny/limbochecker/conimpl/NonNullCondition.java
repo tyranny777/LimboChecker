@@ -2,7 +2,7 @@ package com.tyranny.limbochecker.conimpl;
 
 import android.text.TextUtils;
 import com.tyranny.limbochecker.R;
-import com.tyranny.limbochecker.definition.IContentChecker;
+import com.tyranny.limbochecker.definition.ILimboChecker;
 import com.tyranny.limbochecker.util.RunUIToastUtils;
 
 /**
@@ -22,12 +22,12 @@ public class NonNullCondition extends BaseCondition {
     }
 
     @Override
-    public boolean match(IContentChecker.MatchBody matchBody) {
+    public boolean match(ILimboChecker.MatchBody matchBody) {
         return !TextUtils.isEmpty(matchBody.getContent());
     }
 
     @Override
-    public void showTips(IContentChecker.MatchBody matchBody) {
+    public void showTips(ILimboChecker.MatchBody matchBody) {
         if (isShow) {
             RunUIToastUtils.setToast(matchBody.getCx(), String.format("%s%s",
                     matchBody.getName(), matchBody.getCx().getString(R.string.str_not_null)));
@@ -35,7 +35,7 @@ public class NonNullCondition extends BaseCondition {
     }
 
     @Override
-    public String getToast(IContentChecker.MatchBody matchBody) {
+    public String getToast(ILimboChecker.MatchBody matchBody) {
         return String.format("%s%s", matchBody.getName(), matchBody.getCx().getString(R.string.str_not_null));
     }
 }

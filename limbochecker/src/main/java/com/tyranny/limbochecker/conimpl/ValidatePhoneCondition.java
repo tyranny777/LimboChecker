@@ -1,7 +1,7 @@
 package com.tyranny.limbochecker.conimpl;
 
 import android.text.TextUtils;
-import com.tyranny.limbochecker.definition.IContentChecker;
+import com.tyranny.limbochecker.definition.ILimboChecker;
 import com.tyranny.limbochecker.util.RunUIToastUtils;
 
 /**
@@ -24,7 +24,7 @@ public class ValidatePhoneCondition extends BaseCondition {
     }
 
     @Override
-    public boolean match(IContentChecker.MatchBody matchBody) {
+    public boolean match(ILimboChecker.MatchBody matchBody) {
         CharSequence content = matchBody.getContent();
         content = content.toString().replaceAll(" ", "");
         content = content.toString().replaceAll("-", "");
@@ -36,14 +36,14 @@ public class ValidatePhoneCondition extends BaseCondition {
     }
 
     @Override
-    public void showTips(IContentChecker.MatchBody matchBody) {
+    public void showTips(ILimboChecker.MatchBody matchBody) {
         if (isShow) {
             RunUIToastUtils.setToast(matchBody.getCx(), "请输入正确格式手机号码");
         }
     }
 
     @Override
-    public String getToast(IContentChecker.MatchBody matchBody) {
+    public String getToast(ILimboChecker.MatchBody matchBody) {
         return "请输入正确格式手机号码";
     }
 

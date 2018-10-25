@@ -1,7 +1,7 @@
 package com.tyranny.limbochecker.definition;
 
 
-import com.tyranny.limbochecker.bodyimpl.ContentMatchBody;
+import com.tyranny.limbochecker.bodyimpl.LimboMatchBody;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,7 +20,7 @@ public class ContentUtil {
     public static final String REGEX_ENGLISH = "[a-zA-Z]*";
     public static final String REGEX_CHINESE = "[\u4e00-\u9fa5]*";
 
-    public static String xBody(ContentMatchBody body, int checkType) {
+    public static String xBody(LimboMatchBody body, int checkType) {
         String bodyS = body.getContent().toString().trim();
         bodyS = bodyS.replaceAll(" ", "");
         bodyS = bodyS.replaceAll("-", "");
@@ -43,19 +43,19 @@ public class ContentUtil {
         Pattern p = Pattern.compile(REGEX_INTEGER);
         Matcher m = p.matcher(txt);
         if (m.matches()) {
-            return IContentChecker.InputSouceType.CHECK_INPUT_INT;
+            return ILimboChecker.InputSouceType.CHECK_INPUT_INT;
         }
         p = Pattern.compile(REGEX_ENGLISH);
         m = p.matcher(txt);
         if (m.matches()) {
-            return IContentChecker.InputSouceType.CHECK_INPUT_ENG;
+            return ILimboChecker.InputSouceType.CHECK_INPUT_ENG;
         }
         p = Pattern.compile(REGEX_CHINESE);
         m = p.matcher(txt);
         if (m.matches()) {
-            return IContentChecker.InputSouceType.CHECK_INPUT_STR;
+            return ILimboChecker.InputSouceType.CHECK_INPUT_STR;
         }
 
-        return IContentChecker.InputSouceType.CHECK_INPUT_OTHER;
+        return ILimboChecker.InputSouceType.CHECK_INPUT_OTHER;
     }
 }
