@@ -1,14 +1,20 @@
 # LimboChecker
 ```NonNullCondition noNull = new NonNullCondition(false);
-ContentMatchBody name = new ContentMatchBody("name",editText1.getText().toString().trim());
+ValidatePhoneCondition val = new ValidatePhoneCondition(11,false);
+NonNullCondition noNull = new NonNullCondition(false);
+LengthCondition len = new LengthCondition(11, IContentChecker.LengthType.PHONE, false);
 
-ContentMatchBody IDcard = new ContentMatchBody("idcard",editText2.getText().toString().trim());
+ContentMatchBody name = new ContentMatchBody("name","test");
+
+ContentMatchBody phone = new ContentMatchBody("phone","12345678");
 
 LinkedHashMap<BaseCondition, ContentMatchBody> map3 = new LinkedHashMap<>();
 map3.put(noNull, name);
 
 LinkedHashMap<BaseCondition, ContentMatchBody> map2 = new LinkedHashMap<>();
-map2.put(noNull, IDcard);
+map2.put(noNull, phone);
+map2.put(len, phone);
+map2.put(val, phone);
 
 LinkedHashMap<Object, LinkedHashMap<BaseCondition, ContentMatchBody>> mapHashMap = new LinkedHashMap<>();
 
